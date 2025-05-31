@@ -59,7 +59,7 @@ st.title("356 Dias de Amor")
 # === LEITURA DO CSV ===
 @st.cache_data
 def carregar_mensagens():
-    df = pd.read_csv("mensagens_356_dias_com_link.csv", sep=";")
+    df = pd.read_csv("mensagens_356_dias_com_link.csv", sep=";", encoding="utf-8")
     mensagens = {}
     for _, row in df.iterrows():
         data = row["data"]
