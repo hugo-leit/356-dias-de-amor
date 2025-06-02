@@ -88,7 +88,7 @@ try:
             st.write(msg["poema"])
         if "link" in msg and msg["link"]:
             st.subheader("🎵 Link especial")
-            st.markdown(f"[Clique aqui]({msg['link']})")
+            st.markdown(f'<a href="{msg["link"].strip()}" target="_blank">💖 Clique aqui 💖</a>', unsafe_allow_html=True)
     else:
         st.warning("Ainda não há conteúdo para esse dia.")
 except:
