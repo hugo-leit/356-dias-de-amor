@@ -5,29 +5,25 @@ from datetime import datetime
 @st.cache_data
 def carregar_mensagens():
     df = pd.read_csv("mensagens_356_dias_com_link_novo.csv", sep=";", encoding="utf-8")
-    
-    # Normaliza os nomes das colunas
     df.columns = df.columns.str.strip().str.lower()
-    
-    # Converte a data para o formato padrão esperado
+
     df["data"] = pd.to_datetime(df["data"], dayfirst=True, errors="coerce").dt.strftime("%-d/%-m/%y")
 
     mensagens = {}
     for _, row in df.iterrows():
         data = row["data"]
-        tipo = row["tipo"].strip().lower()
+        tipo = str(row["tipo"]).strip().lower()
         conteudo = str(row["conteudo"]).strip()
         
         if not data or not tipo or not conteudo or conteudo.lower() == "nan":
             continue
-        
+
         if data not in mensagens:
             mensagens[data] = {}
         mensagens[data][tipo] = conteudo
 
     return mensagens
 
-# Interface do app
 st.set_page_config(page_title="356 Dias de Amor 💖", page_icon="💌")
 st.title("💘 356 Dias de Amor 💘")
 st.write("Escolha uma data para ver sua surpresa especial:")
