@@ -39,12 +39,12 @@ msg = mensagens.get(data_str)
 if msg:
     st.markdown(f"### Mensagem para {data_str}")
     
-    if "poema" in msg and pd.notna(msg["poema"]):
+    if "poema" in msg and msg["poema"].strip():
         st.subheader("💌 Poema")
         st.write(msg["poema"])
     
-    if "link" in msg and pd.notna(msg["link"]):
+    if "link" in msg and msg["link"].strip():
         st.subheader("🎵 Link especial")
-        st.markdown(f'<a href="{msg["link"]}" target="_blank">💖 Clique aqui 💖</a>', unsafe_allow_html=True)
+        st.markdown(f'<a href="{msg["link"].strip()}" target="_blank">💖 Clique aqui 💖</a>', unsafe_allow_html=True)
 else:
     st.warning("Data inválida ou sem mensagem cadastrada.")
