@@ -4,7 +4,7 @@ from datetime import datetime
 
 @st.cache_data
 def carregar_mensagens():
-    df = pd.read_csv("mensagens_356_dias_com_link_novo.csv", sep=";", encoding="utf-8")
+    df = pd.read_csv("lindo.csv", sep=";", encoding="utf-8")
     df.columns = df.columns.str.strip().str.lower()
 
     df["data"] = pd.to_datetime(df["data"], dayfirst=True, errors="coerce").dt.strftime("%-d/%-m/%y")
