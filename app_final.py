@@ -11,10 +11,10 @@ def carregar_mensagens():
 
     mensagens = {}
     for _, row in df.iterrows():
-        data = row["data"]
+        data = str(row["data"]).strip()
         tipo = str(row["tipo"]).strip().lower()
         conteudo = str(row["conteudo"]).strip()
-        
+
         if not data or not tipo or not conteudo or conteudo.lower() == "nan":
             continue
 
